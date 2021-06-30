@@ -20,7 +20,7 @@
     <!--Estilos CSS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 
     <!-- Animate -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -48,8 +48,11 @@
     </header>
 
     <!--Principal-->
-     <main>
+     <main class="container">
 
+        <div id= "mensaje-contenedor" class="row justify-content-center">
+            <h3 class="col-5 text-center">Escuchando a {{acá debería ir el nombre}}</h3>
+        </div>
         <div class="row justify-content-center">
             
             <div class="col-5 text-center">
@@ -64,7 +67,7 @@
                     <li class="list-group-item">Noriega Vera, Brandom Marcelo</li>
                     <li class="list-group-item">Pérez Fonseca, Juan Diego</li>
                     <li class="list-group-item">Ramos Paredes, Roger Anthony</li>
-                    <li class="list-group-item">Salcedo Alfaron, Jhon Marco</li>
+                    <li class="list-group-item">Salcedo Alfaro, Jhon Marco</li>
                     
                 </ul>
 
@@ -80,7 +83,7 @@
         </div>
     </footer>
 
-    <script src="./scripts/index.js" type="module"></script>
+    <script src="../scripts/listener.js" type="module"></script>
 </body>
 
 </html>

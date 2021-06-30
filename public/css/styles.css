@@ -34,14 +34,15 @@ li {
 }
 
 #form{
-align-items: center;
-width: 30%;
-}
-
-#nombre_alumno{
+  margin: 0px 0px 0px 0px;
+  align-items: center;
   width: 30%;
 }
 
+#mensaje-contenedor{
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+}
 
 th,
 td {
