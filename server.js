@@ -7,18 +7,24 @@ const port = 3000;
 
 app.use(Express.static("public"));
 app.use(Express.json());
-app.use(morgan('tiny'))
-app.use(Express.urlencoded({extended: false}))
+app.use(morgan('tiny'));
+app.use(Express.urlencoded({ extended: false }));
+
+let username = "NO NAME"
 
 app.get("/", async (req, res) => {
-    res.sendFile(path.resolve('index.html'))
+    res.sendFile(path.resolve('index.html'));
 })
 
 app.post("/", async (req, res) => {
-    const { nombre } = req.body
-
+    const { nombre } = req.body;
+    username = nombre;
     console.log("Nombre del Estudiante: ", nombre);
     res.sendFile(path.resolve('public/html/listening.html'))
+})
+
+app.get("/username", async (req, res) => {
+    res.json({ username });
 })
 
 app.listen(port, () => console.log("Listening on port " + port));
