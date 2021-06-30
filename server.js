@@ -27,5 +27,5 @@ app.get("/username", async (req, res) => {
     res.json({ username });
 })
 
-app.listen(port, () => console.log("Listening on port " + port));
+app.listen(port, () => console.log("Listening on:\thttp://127.0.0.1:" + port));
 
