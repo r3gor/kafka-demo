@@ -33,6 +33,16 @@ li {
   background-color: #060829;
 }
 
+#form{
+align-items: center;
+width: 30%;
+}
+
+#nombre_alumno{
+  width: 30%;
+}
+
+
 th,
 td {
   text-align: center;
