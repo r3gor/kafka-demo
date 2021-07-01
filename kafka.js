@@ -1,0 +1,20 @@
+import { Kafka } from 'kafkajs';
+
+const kafka = new Kafka({
+    clientId: 'my-app',
+    brokers: ['localhost:9092']
+  });
+
+const admin = kafka.admin();
+
+const run = async () => {
+    await admin.connect();
+
+    //console.log(await admin.listTopics())
+    var partitions = await admin.fetchTopicMetadata();
+    console.log(partitions);
+    
+    await admin.disconnect();
+  };
+
+export {run} 
