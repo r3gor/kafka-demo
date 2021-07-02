@@ -28,8 +28,9 @@ app.get("/username", async (req, res) => {
     res.json({ username });
 })
 
-app.listen(port, () => console.log("Listening on:\thttp://127.0.0.1:" + port));
+app.put("/ksend", async (req,res) =>{
+    console.log(req.body);
+})
 
-await k_admin_run().catch(console.error);
-console.log(k_admin);
+app.listen(port, () => console.log("Listening on:\thttp://127.0.0.1:" + port));
 
