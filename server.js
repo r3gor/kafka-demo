@@ -1,7 +1,7 @@
 import Express from "express";
 import * as path from 'path';
 import morgan from "morgan";
-import { run } from "./kafka.js"
+import { k_admin , k_admin_run} from "./kafka.js"
 
 const app = Express();
 const port = 3000;
@@ -30,5 +30,6 @@ app.get("/username", async (req, res) => {
 
 app.listen(port, () => console.log("Listening on:\thttp://127.0.0.1:" + port));
 
-await run().catch(console.error);
+await k_admin_run().catch(console.error);
+console.log(k_admin);
 

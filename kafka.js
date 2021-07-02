@@ -5,16 +5,15 @@ const kafka = new Kafka({
     brokers: ['localhost:9092']
   });
 
-const admin = kafka.admin();
+const k_admin = kafka.admin();
 
-const run = async () => {
+const k_admin_run = async () => {
     await admin.connect();
 
-    //console.log(await admin.listTopics())
     var partitions = await admin.fetchTopicMetadata();
     console.log(partitions);
     
-    await admin.disconnect();
+    await k_admin.disconnect();
   };
 
-export {run} 
+export {k_admin, k_admin_run} 
