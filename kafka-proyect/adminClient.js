@@ -8,9 +8,6 @@ const kafka = new Kafka({
 const admin = kafka.admin()
 
 
-//admin.deleteTopics({
-//    "topics": ["topic1"]
-//})
 
 
 const run = async () => {
