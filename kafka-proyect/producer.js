@@ -1,3 +1,4 @@
+
 const { Kafka } = require('kafkajs')
  
 const kafka = new Kafka({
@@ -6,20 +7,40 @@ const kafka = new Kafka({
 })
  
 const producer = kafka.producer()
- 
+
+//Datos de entrada
+const topicName = 'Prueba'
+const part = 1
+
+//Pido valor por consola (el primer argumento por consola)
+const msg = process.argv[2];
+
+const produceMessage = async() =>{
+    console.log(msg);
+    
+    try{
+        await producer.send({
+            "topic" : topicName,
+            "messages": [
+              //{ key: 'key1', value: 'hello world', partition: 0 }
+              { 
+                "value": msg, 
+                "partition":part
+              },
+            ],
+          })
+    }catch (error){
+        console.log(error)
+    }
+}
+
 const run = async () => {
   // Producing
   await producer.connect()
-  await producer.send({
-    topic: 'test-topic',
-    messages: [
-      { value: '4' },
-    ],
-  })
+  //setInterval(produceMessage, 1000)
+  produceMessage();
+  console.log()
 }
- 
+
+
 run().catch(console.error)
-
-
-
-

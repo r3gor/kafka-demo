@@ -6,7 +6,7 @@ const kafka = new Kafka({
 })
  
 const consumer = kafka.consumer({groupId: 'consumer-group'})
-const topic = 'numbers'
+const topicName = 'Prueba'
 
 
 
@@ -14,13 +14,14 @@ const run = async () => {
   // Consuming
   await consumer.connect()
   
-  await consumer.subscribe({topic})
+  //await consumer.subscribe({topic})
+  await consumer.subscribe({ topic: topicName, fromBeginning: true })
 
   await consumer.run({
       eachMessage: async ({topic, partition, message}) => {
           console.log({
               partition,
-              offset: message.offset,
+              //offset: message.offset,
               value: message.value.toString(),
           })
       }
