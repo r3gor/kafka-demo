@@ -9,8 +9,9 @@ const get_username = async () => {
 }
 
 const render = async () => {
-    const { username } = await get_username();
+    const { username , user_key} = await get_username();
     document.querySelector("#welcome-user").innerText = `Escuchando a ${username}`;
+    document.querySelector("#welcome-user-key").innerText = `Tu ID es ${user_key}`;
 
     let body = document.getElementsByTagName("body");
     body = body[0]

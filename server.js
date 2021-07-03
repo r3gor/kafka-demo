@@ -12,6 +12,7 @@ app.use(morgan('tiny'));
 app.use(Express.urlencoded({ extended: false }));
 
 let username = "NO NAME"
+let user_key = 0;
 let usuarios = []
 
 app.get("/", async (req, res) => {
@@ -27,13 +28,14 @@ app.post("/", async (req, res) => {
     let located = usuarios.indexOf(nombre)
     if(located == -1){
         usuarios.push(nombre)
+        user_key = usuarios.length - 1;
     }
 
     res.sendFile(path.resolve('public/html/listening.html'))
 })
 
 app.get("/username", async (req, res) => {
-    res.json({ username });
+    res.json({ username , user_key });
 })
 
 app.put("/ksend", async (req,res) =>{
