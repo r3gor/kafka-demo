@@ -16,7 +16,6 @@ const render = async () => {
     body = body[0]
     //Evento de presionar tecla
     function leer(evt){
-        console.log(evt.key);
         fetch("/ksend", {
             method: "PUT",
             headers: {
@@ -27,6 +26,9 @@ const render = async () => {
                 tecla: evt.key
             })
         })
+        .then(r => r.json())
+        .then(d => console.log(d));
+        
         console.log("enviado correctamente ", evt.key);
     }
     body.addEventListener("keypress",leer);

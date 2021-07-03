@@ -22,15 +22,15 @@ const k_admin_run = async () => {
 const k_producer = kafka.producer()
 
 //Datos de entrada
-const topicName = 'Prueba'
-const part = 1
+const topicName = 'Prueba15'
+const part = 0
 
 //Pido valor por consola (el primer argumento por consola)
 //const msg = process.argv[2];
-const msg = 'Hola'
+//const msg = 'Hola'
 
-const produceMessage = async() =>{
-    console.log(msg);
+const produceMessage = async(msg, k_part) =>{
+    console.log("mensaje de produceMessage ", msg);
     
     try{
         await k_producer.send({
@@ -39,7 +39,7 @@ const produceMessage = async() =>{
               //{ key: 'key1', value: 'hello world', partition: 0 }
               { 
                 "value": msg, 
-                "partition":part
+                "partition":k_part
               },
             ],
           })
@@ -48,41 +48,45 @@ const produceMessage = async() =>{
     }
 }
 
-const k_producer_run = async () => {
+const k_producer_run = async (k_key,tecla) => {
+  console.log("flag prod 1");
   // Producing
   await k_producer.connect()
   //setInterval(produceMessage, 1000)
-  produceMessage();
-  console.log()
+  produceMessage("Tecla presionada: " + tecla, k_key);
+  //await k_producer.disconnect();
 }
 
 ///////////////////////////////////////////////////////////
 //CONSUMER
-const k_consumer = kafka.consumer({groupId: 'consumer-group'})
-
+const k_consumer = kafka.consumer({groupId: 'consumer-group'}) 
 const k_consumer_run = async () => {
   // Consuming
+  console.log("flag1");
   await k_consumer.connect()
-  
-  //await consumer.subscribe({topic})
+  console.log("flag2");
+  //await consumer.subscribe({topic}) creo que solo se hace una vez x2
   await k_consumer.subscribe({ topic: topicName, fromBeginning: true })
-
+  console.log("flag3");
   await k_consumer.run({
       eachMessage: async ({topic, partition, message}) => {
-          console.log({
+        console.log("flag3.5");  
+        console.log({
               partition,
               //offset: message.offset,
               value: message.value.toString(),
           })
-      }
+      },
   })
+  console.log("flag4");
+  //await k_consumer.disconnect();
 }
 
 ///////////////////////////////////////////////////////////
 //TOPIC
 
-var newTopic = "Prueba"
-var newPartitions = 2
+var newTopic = "Prueba15"
+var newPartitions = 15
 
 async function k_topic_run(){
   try{
@@ -109,11 +113,10 @@ async function k_topic_run(){
   }
 }
 
-
-
 ///////////////////////////////////////////////////////////
 
   //k_producer_run().catch(console.error)
-  k_consumer_run().catch(console.error)
+  //k_consumer_run().catch(console.error)
+  //k_topic_run().catch(console.error)
 
-export {k_admin, k_admin_run} 
+export { k_producer_run, k_consumer_run} 

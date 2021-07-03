@@ -1,7 +1,7 @@
 import Express from "express";
 import * as path from 'path';
 import morgan from "morgan";
-import { k_admin , k_admin_run} from "./kafka.js"
+import {k_producer_run, k_consumer_run} from "./kafka.js"
 
 const app = Express();
 const port = 3000;
@@ -29,7 +29,6 @@ app.post("/", async (req, res) => {
         usuarios.push(nombre)
     }
 
-
     res.sendFile(path.resolve('public/html/listening.html'))
 })
 
@@ -42,10 +41,16 @@ app.put("/ksend", async (req,res) =>{
 
     //Obtiene la llave como posicion del array "usuarios"
     let k_key = retornar_k_key(nombre)
+    //console.log("tecla: ",tecla, "\tnombre: ",nombre, "\tk_key: ",k_key);
+
+    await k_producer_run(k_key,tecla);
+    //await k_consumer_run();
+    res.json({ k_key, tecla, nombre })
 })
 
 app.listen(port, () => console.log("Listening on:\thttp://127.0.0.1:" + port));
 
+//await k_admin_run()
 
 function retornar_k_key(us_nombre){
     let located = usuarios.indexOf(us_nombre)
@@ -55,4 +60,3 @@ function retornar_k_key(us_nombre){
     }
     return located
 }
-
