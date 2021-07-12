@@ -9,8 +9,8 @@ const kafka = new Kafka({
 const producer = kafka.producer()
 
 //Datos de entrada
-const topicName = 'Prueba'
-const part = 1
+const topicName = 'Prueba15'
+const part = 0
 
 //Pido valor por consola (el primer argumento por consola)
 const msg = process.argv[2];

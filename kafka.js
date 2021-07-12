@@ -22,13 +22,11 @@ const k_admin_run = async () => {
 const k_producer = kafka.producer()
 
 //Datos de entrada
-const topicName = 'Prueba15'
-const part = 0
+const topicName = 'Prueba'
+//const part = 0
 
-//Pido valor por consola (el primer argumento por consola)
-//const msg = process.argv[2];
-//const msg = 'Hola'
 
+//const produceMessage = async(msg, k_part) =>{
 const produceMessage = async(msg, k_part) =>{
     console.log("mensaje de produceMessage ", msg);
     
@@ -62,30 +60,24 @@ const k_producer_run = async (k_key,tecla) => {
 const k_consumer = kafka.consumer({groupId: 'consumer-group'}) 
 const k_consumer_run = async () => {
   // Consuming
-  console.log("flag1");
   await k_consumer.connect()
-  console.log("flag2");
-  //await consumer.subscribe({topic}) creo que solo se hace una vez x2
   await k_consumer.subscribe({ topic: topicName, fromBeginning: true })
-  console.log("flag3");
+  
   await k_consumer.run({
       eachMessage: async ({topic, partition, message}) => {
-        console.log("flag3.5");  
-        console.log({
+          console.log({
               partition,
-              //offset: message.offset,
               value: message.value.toString(),
           })
       },
   })
-  console.log("flag4");
   //await k_consumer.disconnect();
 }
 
 ///////////////////////////////////////////////////////////
 //TOPIC
 
-var newTopic = "Prueba15"
+var newTopic = "Prueba"
 var newPartitions = 15
 
 async function k_topic_run(){

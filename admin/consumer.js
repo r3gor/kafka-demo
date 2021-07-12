@@ -1,7 +1,7 @@
 import { kafkaClient } from './client.js';
 
 export const consumer = kafkaClient.consumer({
-    groupId: 'consumer-admin'
+    groupId: 'consumer-group'
 });
 
 export const consume = async (topic_name, callback) => {

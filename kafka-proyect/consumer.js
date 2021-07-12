@@ -6,7 +6,7 @@ const kafka = new Kafka({
 })
  
 const consumer = kafka.consumer({groupId: 'consumer-group'})
-const topicName = 'Prueba'
+const topicName = 'Prueba15'
 
 
 

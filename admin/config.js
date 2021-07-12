@@ -1,1 +1,1 @@
-export const TOPIC_NAME = "Test1"
+export const TOPIC_NAME = "Prueba"
